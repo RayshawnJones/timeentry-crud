@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Entry App - Home</title>
+</head>
+<body>
+    <h1>Time Entries</h1>
+    <a href="/time/new">Add New Time Entry</a>
+    <ul>
+        <% entries.forEach(entry => { %>
+            <li>
+                <%= entry.date.toDateString() %> - <%= entry.hours %> hours - <%= entry.description %>
+                <a href="/time/<%= entry._id %>">View</a>
+                <a href="/time/<%= entry._id %>/edit">Edit</a>
+                <form action="/time/<%= entry._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
